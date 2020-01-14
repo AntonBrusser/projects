@@ -1,0 +1,137 @@
+
+<!-- ****************************************************************************************** -->
+<!--***************************** Header *******************************************************-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Weather Together</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="showHome()" fill="solid">
+        <ion-icon slot="start" name="home"></ion-icon>
+        Home
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="showFavorits()" fill="solid" color="secondary">
+        Favorits
+        <ion-icon slot="end" name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<!-- ****************************************************************************************** -->
+<!--***************************** Search Bar****************************************************-->
+
+<ion-content class="ion-padding" class="background" *ngIf = "homePage">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="4" offset-sm="4">
+        <ion-card-header color="warning" *ngIf="tryAgainLable" style="text-align: center;">Please Try Again</ion-card-header>
+        <ion-card-content color="warning" *ngIf="tryAgainLable" style="text-align: center;">Make sure you incert correct City with no numbers</ion-card-content>
+        <div class="example-container">
+          <mat-form-field appearance="outline">
+            <mat-label>Sherch</mat-label>
+              <input
+                ngModel pattern="[a-zA-Z ]*"
+                type="text"
+                matInput placeholder="Example: Paris"
+                [(ngModel)]="q"
+                (keyup)="onKey($event)">
+              <mat-icon matSuffix>search</mat-icon>
+              <mat-hint>Type a Name of a City</mat-hint>
+            </mat-form-field> 
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+<!-- ****************************************************************************************** -->
+<!--***************************** Show the Weather 5 days ***************************************-->
+
+ 
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="8" offset-md="2">
+            <ion-card class="bodyDiv">
+              <ion-row>
+                <ion-col>
+                  <div class="chosenCity">
+
+                    <ion-row>
+                      <ion-col size-md="4" size-sm="4">
+                          <img src = {{weatherIcon}} class="chosenImage">
+                      </ion-col>
+                      <ion-col size-md="6" size-sm="6" style="padding-top: 3%;">
+                         <h6 style="font-size:larger">  <span style="font-size:x-large"> {{cityName}} </span> <br> {{celsius}} </h6>
+                      </ion-col>
+                      <ion-col size-md="2" size-sm="2" style="margin-top: 5%">
+                          <button mat-mini-fab color="primary" style="margin-right: 80%" (click)="addToFavorits()" *ngIf="!isFavorit"> +<ion-icon name="heart-empty"></ion-icon></button>
+                          <button mat-mini-fab style="margin-right: 80%" (click)="removeFromFavorits()" *ngIf="isFavorit"> <ion-icon name="heart"></ion-icon></button>
+                      </ion-col>
+                    </ion-row>
+                  </div>
+                  <div class="chosenWeather">
+                    {{weatherText}}
+                  </div>
+                </ion-col>
+              </ion-row>
+              <div class="fiveDays">
+                <ion-row>
+                  <ion-col size="12" size-sm="2.4" offset-sm="0" *ngFor="let forcast of fiveForcasts; let i = index">
+                    <ion-card class="forcastCard">
+                      <ion-card-header style="font-weight: bold; padding-bottom:0%; font-size: large">{{ forcast.date | date : 'EEEE' }}</ion-card-header>
+                      <p>{{ forcast.date | date : 'dd.MM.yyyy' }}</p>
+                      <ion-img [src]= "forcast.weatherIcon"></ion-img>
+                      <ion-card-subtitle style="height: 5%"> {{forcast.weatherText}}</ion-card-subtitle>
+                      <ion-card-content style="font-size: x-large; padding-bottom: 0%;"> {{forcast.MaxCelsius}} </ion-card-content>
+                      <ion-card-content style="font-size:medium; padding-top: 0%"> {{forcast.MinCelsius}} </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
+
+
+
+
+<!-- ****************************************************************************************** -->
+<!--***************************** Favorites *******************************************************-->
+
+
+<ion-content *ngIf='favoritsPage' class="background">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="favTitle"> <h1 style="font-size: xx-large; font-family: fantasy"> Favorits </h1> </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="bodyDiv">
+          <ion-card-title *ngIf="showFavLable" style="text-align: center">No Favorite Cities Yet</ion-card-title>
+          <div class="favList">
+            <ion-row>
+              <ion-col size="12" size-sm="3" offset-sm="0" *ngFor="let favorit of cities$ | async, let i = index" (click)="openFavoriteCity(favorit.placeKey, favorit.cityName)">
+                <ion-card class="favCard">
+                   <img src={{favorit.weatherIcon}} />
+                   <ion-card-title> {{ favorit.cityName }} </ion-card-title>
+                   <ion-card-content> {{ favorit.weatherText }} </ion-card-content>
+                   <ion-card-content style="font-size: x-large"> {{ favorit.celsius }} </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,50 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .favTitle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .favTitle > * {
+    width: 100%;
+  }
+
+  .favCard {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.89);
+      height: auto;
+  }
+
+  .favTitle {
+    font-size: xx-large;
+  }
+
+  .chosenWeather {
+      text-align: center;
+      padding-bottom: 8%;
+      font-size: xx-large;
+  }
+
+  .forcastCard{
+    margin: 0;
+    height: 100%;
+    text-align: center;
+  }
+
+  .bodyDiv {
+    background-color: rgba(255, 255, 255, 0.774);
+  }
+  .forcastCard{
+    background-color: rgba(255, 255, 255, 0.89);
+  }
+ 
+  ion-content.background{
+    --background: url(https://wallpapersmug.com/download/2560x1440/7a22c5/forest_mountains_sunset_cool_weather_minimalism.jpg) 0 0/100% 100% no-repeat;
+}

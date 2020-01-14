@@ -1,0 +1,206 @@
+
+
+<div class="loginBack" *ngIf="loginPage">
+
+      <mat-card class="login">
+        <mat-card-content>
+          <mat-form-field appearance="outline">
+            <mat-label style="color: rgba(255, 255, 255, 0.493)">שם משתמש</mat-label>
+            <input matInput placeholder="הקלד שם משתמש" type="text" style="color: white"  [(ngModel)]="enterLogin">
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label style="color: rgba(255, 255, 255, 0.493)">סיסמא</mat-label>
+            <input matInput placeholder="הקלד סיסמא" type="password" style="color: white" [(ngModel)]="enterPassword">
+            <mat-icon matSuffix>vpn_key</mat-icon>
+          </mat-form-field>
+
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="onLoginClick()">כניסה</button>
+    </mat-card-content>
+  </mat-card>
+
+</div>
+
+
+<div class="bodyy">
+  <div class="wrapper">
+
+    <div *ngIf="mainPage">
+      <div class="table">
+        <table style="width: 90%">
+          <tr class="table-info">
+            <th>שבת</th>
+            <th>שישי</th>
+            <th>חמישי</th>
+            <th>רביעי</th>
+            <th>שלישי</th>
+            <th>שני</th>
+            <th>ראשון</th>
+            <th> <h6>עמדה</h6> </th>
+          </tr>
+          <tr>
+            <td> {{suterdayWorker1}} <br> {{suterdayWorker2}} </td>
+            <td> {{fridayWorker1}} <br> {{fridayWorker2}} </td>
+            <td> {{thirsdayWorker1}} <br> {{thirsdayWorker2}} </td>
+            <td> {{wensdayWorker1}} <br> {{wensdayWorker2}} </td>
+            <td> {{tusdayWorker1}} <br> {{tusdayWorker2}} </td>
+            <td> {{mondayWorker1}} <br> {{mondayWorker2}} </td>
+            <td> {{sundayWorker1}} <br> {{sundayWorker2}} </td>
+            <td> <h6> 1  <br> 4 </h6> </td>
+          </tr>
+
+          <tr>
+            <td> {{suterdayWorker3}} <br> {{suterdayWorker4}} </td>
+            <td> {{fridayWorker3}} <br> {{fridayWorker4}} </td>
+            <td> {{thirsdayWorker3}} <br> {{thirsdayWorker4}} </td>
+            <td> {{wensdayWorker3}} <br> {{wensdayWorker4}} </td>
+            <td> {{tusdayWorker3}} <br> {{tusdayWorker4}} </td>
+            <td> {{mondayWorker3}} <br> {{mondayWorker4}} </td>
+            <td> {{sundayWorker3}} <br> {{sundayWorker4}} </td>
+            <td> <h6> 2  <br> 5 </h6> </td>
+          </tr>
+
+          <tr>
+            <td> {{suterdayWorker5}} <br> {{suterdayWorker6}} </td>
+            <td> {{fridayWorker5}} <br> {{fridayWorker6}} </td>
+            <td> {{thirsdayWorker5}} <br> {{thirsdayWorker6}} </td>
+            <td> {{wensdayWorker5}} <br> {{wensdayWorker6}} </td>
+            <td> {{tusdayWorker5}} <br> {{tusdayWorker6}} </td>
+            <td> {{mondayWorker5}} <br> {{mondayWorker6}} </td>
+            <td> {{sundayWorker5}} <br> {{sundayWorker6}} </td>
+            <td> <h6> 3  <br> 6 </h6> </td>
+          </tr>
+        </table>
+      </div>
+      <button class="btn btn-primary btn-lg" (click)="logout()" >יציאה</button>
+    </div>
+
+
+    <div *ngIf="UserPage">
+      <div class="banner">
+        <div class="UserHeader">
+          <span class="HeaderName"> !שלום {{loadedWorker.getWorkerName()}}</span> <br>
+        </div>
+        <div class="UserHeaderRuls">
+          <span>יש לסמן בטבלה את המשמרות שלא יכולים לעבוד בהן</span> <br>
+          <span>ולאחר מכן ללחוץ על - שלח</span> <br>
+        </div>
+      </div>
+
+      <div class="tableBody">
+        <mat-card style="margin: 5%;">
+          <mat-card-content style="padding: 0">
+            <div class="table">
+              <table>
+                <tr class="table-info">
+                  <th>שבת</th>
+                  <th>שישי</th>
+                  <th>חמישי</th>
+                  <th>רביעי</th>
+                  <th>שלישי</th>
+                  <th>שני</th>
+                  <th>ראשון</th>
+                </tr>
+                <tr>
+                  <td> <button class="btn btn-outline-success" *ngIf="canSuterdayBoker" (click)="block71()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canSuterdayBoker" (click)="block71()"> חסום </button> </td>
+                  <td> <button class="btn btn-outline-success" *ngIf="canFridayBoker" (click)="block61()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canFridayBoker" (click)="block61()"> חסום </button> </td>
+                  <td> <button class="btn btn-outline-success" *ngIf="canThirsdayBoker" (click)="block51()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canThirsdayBoker" (click)="block51()"> חסום </button> </td>
+                  <td> <button class="btn btn-outline-success" *ngIf="canWensdayBoker" (click)="block41()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canWensdayBoker" (click)="block41()"> חסום </button> </td>
+                  <td> <button class="btn btn-outline-success" *ngIf="canTusdayBoker" (click)="block31()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canTusdayBoker" (click)="block31()"> חסום </button> </td>
+                  <td> <button class="btn btn-outline-success" *ngIf="canMondayBoker" (click)="block21()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canMondayBoker" (click)="block21()"> חסום </button> </td>
+                  <td> <button class="btn btn-outline-success" *ngIf="canSundayBoker" (click)="block11()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canSundayBoker" (click)="block11()"> חסום </button> </td>
+                </tr>
+
+                <tr>
+                    <td> <button class="btn btn-outline-success" *ngIf="canSuterdayErev" (click)="block72()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canSuterdayErev" (click)="block72()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canFridayErev" (click)="block62()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canFridayErev" (click)="block62()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canThirsdayErev" (click)="block52()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canThirsdayErev" (click)="block52()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canWensdayErev" (click)="block42()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canWensdayErev" (click)="block42()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canTusdayErev" (click)="block32()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canTusdayErev" (click)="block32()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canMondayErev" (click)="block22()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canMondayErev" (click)="block22()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canSundayErev" (click)="block12()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canSundayErev" (click)="block12()"> חסום </button> </td>
+                </tr>
+
+                <tr>
+                    <td> <button class="btn btn-outline-success" *ngIf="canSuterdayLayla" (click)="block73()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canSuterdayLayla" (click)="block73()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canFridayLayla" (click)="block63()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canFridayLayla" (click)="block63()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canThirsdayLayla" (click)="block53()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canThirsdayLayla" (click)="block53()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canWensdayLayla" (click)="block43()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canWensdayLayla" (click)="block43()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canTusdayLayla" (click)="block33()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canTusdayLayla" (click)="block33()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canMondayLayla" (click)="block23()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canMondayLayla" (click)="block23()"> חסום </button> </td>
+                    <td> <button class="btn btn-outline-success" *ngIf="canSundayLayla" (click)="block13()"> פתוח </button> <button class="btn btn-danger" *ngIf="!canSundayLayla" (click)="block13()"> חסום </button> </td>
+                </tr>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <button class="btn btn-primary btn-lg" (click)="sendShifts()">שלח</button>
+      </div>
+      </div>
+
+
+
+    <div *ngIf="masterPage">
+      <div class="table">
+        <table>
+          <tr class="table-info">
+            <th>שבת</th>
+            <th>שישי</th>
+            <th>חמישי</th>
+            <th>רביעי</th>
+            <th>שלישי</th>
+            <th>שני</th>
+            <th>ראשון</th>
+            <th> <h6>עמדה</h6> </th>
+          </tr>
+          <tr>
+              <td> {{suterdayWorker1}} <br> {{suterdayWorker2}} </td>
+              <td> {{fridayWorker1}} <br> {{fridayWorker2}} </td>
+              <td> {{thirsdayWorker1}} <br> {{thirsdayWorker2}} </td>
+              <td> {{wensdayWorker1}} <br> {{wensdayWorker2}} </td>
+              <td> {{tusdayWorker1}} <br> {{tusdayWorker2}} </td>
+              <td> {{mondayWorker1}} <br> {{mondayWorker2}} </td>
+              <td> {{sundayWorker1}} <br> {{sundayWorker2}} </td>
+            <td> <h6> 1  <br> 4 </h6> </td>
+          </tr>
+
+          <tr>
+            <td> {{suterdayWorker3}} <br> {{suterdayWorker4}} </td>
+            <td> {{fridayWorker3}} <br> {{fridayWorker4}} </td>
+            <td> {{thirsdayWorker3}} <br> {{thirsdayWorker4}} </td>
+            <td> {{wensdayWorker3}} <br> {{wensdayWorker4}} </td>
+            <td> {{tusdayWorker3}} <br> {{tusdayWorker4}} </td>
+            <td> {{mondayWorker3}} <br> {{mondayWorker4}} </td>
+            <td> {{sundayWorker3}} <br> {{sundayWorker4}} </td>
+            <td> <h6> 2  <br> 5 </h6> </td>
+          </tr>
+
+          <tr>
+            <td> {{suterdayWorker5}} <br> {{suterdayWorker6}} </td>
+            <td> {{fridayWorker5}} <br> {{fridayWorker6}} </td>
+            <td> {{thirsdayWorker5}} <br> {{thirsdayWorker6}} </td>
+            <td> {{wensdayWorker5}} <br> {{wensdayWorker6}} </td>
+            <td> {{tusdayWorker5}} <br> {{tusdayWorker6}} </td>
+            <td> {{mondayWorker5}} <br> {{mondayWorker6}} </td>
+            <td> {{sundayWorker5}} <br> {{sundayWorker6}} </td>
+            <td> <h6> 3  <br> 6 </h6> </td>
+          </tr>
+        </table>
+      </div>
+
+        <div class="ps" style="text-align: right">
+          <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="הערות" style="text-align: end"></textarea>
+          <button class="btn btn-primary btn-lg" (click)="logout()" >יציאה</button>
+          <button class="btn btn-primary btn-lg" >סדר</button>
+        </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+

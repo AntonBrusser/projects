@@ -1,0 +1,7 @@
+{
+  "name": "HeroloWeatherTask",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

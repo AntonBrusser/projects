@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "420482349574",
+    "firebase_url": "https://trainercontainer.firebaseio.com",
+    "project_id": "trainercontainer",
+    "storage_bucket": "trainercontainer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420482349574:android:2d27bd8df9cf7655d32187",
+        "android_client_info": {
+          "package_name": "com.trainer.trainercontainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420482349574-957jemehfb6fj7vjbiljchumnkn0f23g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtOjkhyT3FfFeGQhyWjBkX8H83H70FGTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420482349574-957jemehfb6fj7vjbiljchumnkn0f23g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -73,7 +73,7 @@ export class HomePage implements OnInit {
   }
 
   getCurrentPlaceData(latitude, longitude) {
-    const url = 'https://api.weatherbit.io/v2.0/current?lat=' + latitude + '&lon=' + longitude + '&key=' + this.apiKey;
+    const url = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${this.apiKey}`;
     this.httpClient.get(url).subscribe((placeData) => {
       const obj =  placeData;
       console.log(obj);
